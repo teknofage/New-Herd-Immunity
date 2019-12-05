@@ -20,8 +20,8 @@ class Person:
         Return True if they survived the infection and False if they did not. 
         '''
         
-        if self.infection is not None
-        survival_rate = random.randrange(0, 1)
+        if self.infection is not None:
+            survival_rate = random.randrange(0, 1)
         
             if survival_rate < self.infection.mortality_num:
                 self.is_alive = False
