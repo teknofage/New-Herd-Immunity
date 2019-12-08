@@ -48,12 +48,12 @@ class Simulation:
             print(person.is_alive)
             print(person.is_vaccinated)
             
-        print(self.population_size)
-        print(self.initial_infected)
-        print(self.initial_healthy)
-        print(self.initial_vaccinated)
-        print(self.total_dead)
-        print(self.total_vaccinated)
+        print("Population Size: {}".format(self.population_size))
+        print("Initial Infected: {}".format(self.initial_infected))
+        print("Initial Healthy: {}".format(self.initial_healthy))
+        print("Initial Vaccinated: {}".format(self.initial_vaccinated))
+        print("Total Dead: {}".format(self.total_dead))
+        print("Total Vaccinated: {}".format(self.total_vaccinated))
             
 
     def get_infected(self):
@@ -119,24 +119,32 @@ class Simulation:
         if it returns false then the person is no longer alive, does not have an infection and one is added to total dead
         if it returns true then the person no longer has an infection and is vaccinated, one is added to total vaccinated'''
         #TODO: finish this method
-        did_survive_infection
+        did_survive_infection()
         if self.person.did_survive_infection() == True and self.infection == None:
-            total_vaccinated.append(person)
+            self.total_vaccinated.append(person)
         elif self.person.did_survive_infection() == False:
-            total_dead.append(person)
+            self.total_dead.append(person)
+        else:
+            print("Error")
             
 
     def time_step(self, infected):
         ''' For every infected person interact with a random person from the population 10 times'''
 
-        for infected_person in infected:
+        self.newly.infected = []
+        self.newly.dead = 0
+        
+        # for person in self.population:
+        for infected_person in self.old_infected:
+            
 
             for i in range(10):
                 #TODO: get a random index for the population list
-                random.choice(population)
+                random_index = random.choice(self.population)
                 #TODO: using the random index get a random person from the population
+                random_person = self.population[random_index]
                 #TODO: call interaction() with the current infected person and the random person
-                pass
+                self.interaction(self.infected_person, self.random_person)
 
 
     def interaction(self, infected, random_person):
@@ -148,9 +156,20 @@ class Simulation:
             if the random float is less then the infected person's virus reproduction number then the random person is infected
             othersie the random person is vaccinated and one is added to the total vaccinated'''
         #TODO: finish this method
+        if infected == random_person:
+            return
+        if random_person.is_vaccinated == True:
+            return
+        if random_person.is_alive == False:
+            return
+        if random_person.is_vaccinated == False and random_person.is_alive == True:
+            random_result = random.uniform(0,1)
+            if random_result < self.virus.reproduction_num:
+                random_person.infection = self.virus
+            else: 
+                random_person.is_vaccinated = True
         
-
-
+        
         
 
 
