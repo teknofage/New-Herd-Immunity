@@ -28,10 +28,11 @@ class Person:
                 self.infection = None
                 return False
                 #person dies from infection
-            else:
+            else: 
                 self.is_alive = True
                 self.is_vaccinated = True
                 self.infection = None
                 return True
                 #person lives and becomes vaccinated
+
         

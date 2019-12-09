@@ -1,0 +1,10 @@
+Simulation for virus: Dengue Fever
+Reproduction Number: 0.5, Mortality Number: 0.49
+Population Size: 100
+Initial Vaccinated: 15
+Initial Healthy: 80
+Initial Infected: 5
+
+Simulation Ended after 0 turns
+Total Dead: 0
+Total Vaccinated: 15
