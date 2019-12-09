@@ -20,7 +20,6 @@ class Simulation:
 
         self.total_dead = 0
         self.total_vaccinated = initial_vaccinated
-        self.infected_list = []
 
         self.file_writer = FileWriter(resultsfilename)
 
@@ -64,7 +63,7 @@ class Simulation:
         for person in self.population:
             if person.infection is not None:
                 infected_list.append(person)
-                return infected_list
+        return infected_list
             
 
 
@@ -80,8 +79,8 @@ class Simulation:
                 return False
             elif self.total_vaccinated >= self.population_size:
                 return False
-            # elif len(self.infected_list) == 0:
-            #     return False
+            elif len(self.get_infected()) == 0:
+                return False
             else:
                 return True
 
@@ -102,7 +101,7 @@ class Simulation:
 
         #keep looping until the simulation ends
         while self.simulation_should_continue():
-
+            
             #save the current infected
             old_infected = self.get_infected()
             self.time_step(old_infected)
@@ -110,8 +109,9 @@ class Simulation:
             self.determine_survival(old_infected)
 
             time_step_counter += 1
-
+            
         print(f'The simulation has ended after {time_step_counter} turns.')
+        
         self.file_writer.write_results(time_step_counter, self.total_dead, self.total_vaccinated)
 
     def determine_survival(self, infected):
@@ -120,8 +120,8 @@ class Simulation:
         if it returns false then the person is no longer alive, does not have an infection and one is added to total dead
         if it returns true then the person no longer has an infection and is vaccinated, one is added to total vaccinated'''
         #TODO: finish this method
-        for person in infected:
-            if person.did_survive_infection() == False:
+        for self.person in infected:
+            if self.person.did_survive_infection() == False:
                 self.total_dead += 1
             elif self.person.did_survive_infection() == True:
                 self.total_vaccinated += 1
@@ -207,4 +207,4 @@ if __name__ == "__main__":
 
     #run the simulation
     simulation.run()
-    # simulation2.run()
+    simulation2.run()
